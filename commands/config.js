@@ -30,18 +30,18 @@ What would you like to edit?
 `);
 
     let ConfigMessage = await message.channel.send(Config);
-    await ConfigMessage.react("1️⃣");
-    await ConfigMessage.react("2️⃣");
+    await ConfigMessage.react("<:Number_1:946711803851841567>");
+    await ConfigMessage.react("<:Number_2:946711913654517790>");
     let emoji = await ConfigMessage.awaitReactions(
       (reaction, user) =>
         user.id === message.author.id &&
-        ["1️⃣", "2️⃣"].includes(reaction.emoji.name),
+        ["<:Number_1:946711803851841567>", "<:Number_2:946711913654517790>"].includes(reaction.emoji.name),
       { max: 1, errors: ["time"], time: 30000 }
     ).catch(() => {
       ConfigMessage.reactions.removeAll();
       client.sendTime(
         message.channel,
-        "❌ | **You took too long to respond. If you want to edit the settings, run the command again!**"
+        "<:x_:944952424270012447> | **You took too long to respond. If you want to edit the settings, run the command again!**"
       );
       ConfigMessage.delete(Config);
     });
@@ -55,10 +55,10 @@ What would you like to edit?
     /**@type {MessageReaction} */
     let em = emoji;
     ConfigMessage.reactions.removeAll();
-    if (em._emoji.name === "1️⃣") {
+    if (em._emoji.name === "<:Number_1:946711803851841567>") {
       await client.sendTime(
         message.channel,
-        "What do you want to change the prefix to?"
+        "<a:check_mark:944952166869778502> What do you want to change the prefix to?"
       );
       let prefix = await message.channel.awaitMessages(
         (msg) => msg.author.id === message.author.id,
@@ -67,7 +67,7 @@ What would you like to edit?
       if (!prefix.first())
         return client.sendTime(
           message.channel,
-          "You took too long to respond."
+          "<:x_:944952424270012447> You took too long to respond."
         );
       prefix = prefix.first();
       prefix = prefix.content;
@@ -79,7 +79,7 @@ What would you like to edit?
 
       client.sendTime(
         message.channel,
-        `Successfully saved guild prefix as \`${prefix}\``
+        `<a:check_mark:944952166869778502> Successfully saved guild prefix as \`${prefix}\``
       );
     } else {
       await client.sendTime(
@@ -110,7 +110,7 @@ What would you like to edit?
 
       client.sendTime(
         message.channel,
-        "Successfully saved DJ role as <@&" + role.id + ">"
+        "<a:check_mark:944952166869778502> Successfully saved DJ role as <@&" + role.id + ">"
       );
     }
   },
